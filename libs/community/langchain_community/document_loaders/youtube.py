@@ -411,12 +411,20 @@ class GoogleApiYoutubeLoader(BaseLoader):
 
     def _get_transcripe_for_video_id(self, video_id: str) -> str:
         from youtube_transcript_api import NoTranscriptFound, YouTubeTranscriptApi
-        from youtube_transcript_api.proxies import WebshareProxyConfig
+        #from youtube_transcript_api.proxies import WebshareProxyConfig
+        from youtube_transcript_api.proxies import GenericProxyConfig
+
+        # ytt_api = YouTubeTranscriptApi(
+        #     proxy_config=WebshareProxyConfig(
+        #         proxy_username="lopkdqdh",
+        #         proxy_password="ve8zlnig1qhr",
+        #     )
+        # )
 
         ytt_api = YouTubeTranscriptApi(
-            proxy_config=WebshareProxyConfig(
-                proxy_username="lopkdqdh",
-                proxy_password="ve8zlnig1qhr",
+            proxy_config=GenericProxyConfig(
+                http_url="https://lopkdqdh:ve8zlnig1qhr@198.23.239.134:6540",
+                https_url="https://lopkdqdh:ve8zlnig1qhr@198.23.239.134:6540",
             )
         )
 
