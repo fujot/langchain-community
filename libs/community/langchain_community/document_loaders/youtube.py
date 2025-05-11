@@ -411,8 +411,18 @@ class GoogleApiYoutubeLoader(BaseLoader):
 
     def _get_transcripe_for_video_id(self, video_id: str) -> str:
         from youtube_transcript_api import NoTranscriptFound, YouTubeTranscriptApi
+        from youtube_transcript_api.proxies import WebshareProxyConfig
 
-        transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
+        ytt_api = YouTubeTranscriptApi(
+            proxy_config=WebshareProxyConfig(
+                proxy_username="lopkdqdh",
+                proxy_password="ve8zlnig1qhr",
+            )
+        )
+
+        transcript_list = ytt_api.list_transcripts(video_id)
+        #transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
+
         try:
             transcript = transcript_list.find_transcript([self.captions_language])
         except NoTranscriptFound:
