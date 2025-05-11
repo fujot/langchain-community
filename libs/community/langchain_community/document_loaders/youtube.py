@@ -323,7 +323,7 @@ class YoutubeLoader(BaseLoader):
             - and more.
         """
         try:
-            from pytube import YouTube
+            from pytubefix import YouTube
 
         except ImportError:
             raise ImportError(
