@@ -259,7 +259,17 @@ class YoutubeLoader(BaseLoader):
             self._metadata.update(video_info)
 
         try:
-            transcript_list = YouTubeTranscriptApi.list_transcripts(self.video_id)
+            from youtube_transcript_api.proxies import GenericProxyConfig
+
+            ytt_api = YouTubeTranscriptApi(
+                proxy_config=GenericProxyConfig(
+                    http_url="http://lopkdqdh:ve8zlnig1qhr@198.23.239.134:6540",
+                    https_url="https://lopkdqdh:ve8zlnig1qhr@198.23.239.134:6540",
+                )
+            )
+
+            transcript_list = ytt_api.list_transcripts(self.video_id)
+            #transcript_list = YouTubeTranscriptApi.list_transcripts(self.video_id)
         except TranscriptsDisabled:
             return []
 
